@@ -76,6 +76,7 @@ class HomeController extends Controller
         $client = new Client();
         // $crawler = $client->request('GET', 'https://codelist.cc/wpplugins/249647-learndash-v4511-learning-management-system-for-wordpress.html');
         $crawler = $client->request('GET', $request->url);
+        // dd($crawler);
         
         $title = $crawler->filter('.entry-title')->text();
         $body = $crawler->filter('body')->text();
@@ -83,7 +84,6 @@ class HomeController extends Controller
         
         // $div = $crawler->filter('div.single-body');
         // $descripton = $div->text();
-        
         
         $texts = [];
         
@@ -183,9 +183,15 @@ class HomeController extends Controller
 
 
         // $parse_html = htmlspecialchars($post);
-        File::put(storage_path($save_path), $post);
+       $created = File::put(storage_path($save_path), $post);
 
-        echo $post;
+        echo $created;
+
+        if($created){
+            // return view('codelist', compact('created'));
+            return redirect()->back()->with('success', 'Your action was successful!');
+
+        }
 
 
         // dd($title, $descripton, $linksArray, $imageUrl);        
