@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\File;
 use Goutte\Client;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
+use Symfony\Component\HttpClient\HttpClient;
 
 use Illuminate\Support\Facades\Storage;
 
@@ -197,5 +198,33 @@ class HomeController extends Controller
         // dd($title, $descripton, $linksArray, $imageUrl);        
     }
 
+
+
+    public function bulk_codlist_md_file_generate()
+    {
+
+        $client = new Client();
+        
+        $crawler = $client->request('GET', 'https://codelist.cc/pg/3/');
+
+        $texts = [];
+        // $links = [];
+
+        $elements = $crawler->filter('.post__title .typescale-2')->text();
+
+        // loop through each element and find all anchor tags with href attributes
+        $links = array();
+        $elements->each(function ($element) use (&$links) {
+            $anchorTags = $element->filter('a[href]');
+            $anchorTags->each(function ($anchorTag) use (&$links) {
+                $href = $anchorTag->attr('href');
+                $links[] = $href;
+            });
+        });
+
+
+
+        dd($elements, 'ddd');
+    }
     
 }

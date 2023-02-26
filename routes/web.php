@@ -18,6 +18,7 @@ Route::get('/', [HomeController::class, 'index'])->name('index');
 Route::post('/data', [HomeController::class, 'save'])->name('save');
 Route::get('/md', [HomeController::class, 'index_for_codlist'])->name('index_for_codlist');
 Route::post('/md', [HomeController::class, 'make_md'])->name('make_md');
+Route::get('/demo', [HomeController::class, 'bulk_codlist_md_file_generate'])->name('bulk_codlist_md_file_generate');
 
 Route::get('/44', function () {
 
