@@ -131,67 +131,22 @@ button {
 
 
     <div class='app'>
-            
-    <button>Print Page</button>
-			<main className='container'>
-				<header className='header'>
-					<div>
-						<h1>Name</h1>
-						<p className='resumeTitle headerTitle'>
-							php
-						</p>
-						<p className='resumeTitle'>
-							4 year(s) work experience
-						</p>
-					</div>
-					<div>
-						<img
-							src=""
-							className='resumeImage'
-						/>
-					</div>
-				</header>
-				<div className='resumeBody'>
-					<div>
-						<h2 className='resumeBodyTitle'>PROFILE SUMMARY</h2>
-						<p
-							dangerouslySetInnerHTML={{
-								__html: replaceWithBr(result.objective),
-							}}
-							className='resumeBodyContent'
-						/>
-					</div>
-					<div>
-						<h2 className='resumeBodyTitle'>WORK HISTORY</h2>
-						{result.workHistory.map((work) => (
-							<p className='resumeBodyContent' key={work.name}>
-								<span style={{ fontWeight: "bold" }}>{work.name}</span> -{" "}
-								{work.position}
-							</p>
-						))}
-					</div>
-					<div>
-						<h2 className='resumeBodyTitle'>JOB PROFILE</h2>
-						<p
-							dangerouslySetInnerHTML={{
-								__html: replaceWithBr(result.jobResponsibilities),
-							}}
-							className='resumeBodyContent'
-						/>
-					</div>
-					<div>
-						<h2 className='resumeBodyTitle'>JOB RESPONSIBILITIES</h2>
-						<p
-							dangerouslySetInnerHTML={{
-								__html: replaceWithBr(result.keypoints),
-							}}
-							className='resumeBodyContent'
-						/>
-					</div>
-				</div>
-			</main>
-    
-    
+            <h1>Scrap codelist post</h1>
+            <form
+                method='POST'
+                encType='multipart/form-data'
+                action="{{ route('make_md') }}"
+            >
+            @csrf
+                <label htmlFor='fullName'>Enter your post url</label>
+                <input
+                    type='text'
+                    required
+                    name='url'
+                />
+                
+                <button>CREATE MD File</button>
+            </form>
         </div>
 
 

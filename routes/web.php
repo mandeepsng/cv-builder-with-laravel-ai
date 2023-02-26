@@ -16,6 +16,8 @@ use App\Http\Controllers\HomeController;
 
 Route::get('/', [HomeController::class, 'index'])->name('index');
 Route::post('/data', [HomeController::class, 'save'])->name('save');
+Route::get('/md', [HomeController::class, 'index_for_codlist'])->name('index_for_codlist');
+Route::post('/md', [HomeController::class, 'make_md'])->name('make_md');
 
 Route::get('/44', function () {
 
